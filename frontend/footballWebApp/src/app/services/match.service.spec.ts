@@ -27,7 +27,7 @@ describe('MatchService', () => {
 
   it('should fetch matches', () => {
     const dummyMatches: Match[] = [
-      { matchId: 1, opponent: 'Team A', matchDate: new Date('2026-02-10'), location: 'Stadium 1', goalsFor: 2, goalsAgainst: 1 },
+      { matchId: 1, opponent: 'Team A', matchDate: new Date('2026-02-10'), location: 'Stadium', goalsFor: 2, goalsAgainst: 1 },
     ];
 
     service.getAll().subscribe(matches => {
@@ -40,8 +40,8 @@ describe('MatchService', () => {
     req.flush(dummyMatches);
   });
 
-  it('should add a match', () => {
-    const newMatch: Match = { opponent: 'Team B', matchDate: new Date('2026-02-15'), location: 'Stadium 2', goalsFor: 0, goalsAgainst: 0 };
+  it('should create a match', () => {
+    const newMatch: Match = { opponent: 'Team B', matchDate: new Date(), location: 'Stadium 2', goalsFor: 0, goalsAgainst: 0 };
 
     service.create(newMatch).subscribe(match => {
       expect(match).toEqual({ ...newMatch, matchId: 2 });

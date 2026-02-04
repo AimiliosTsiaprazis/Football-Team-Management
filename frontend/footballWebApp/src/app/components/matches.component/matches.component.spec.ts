@@ -12,7 +12,7 @@ describe('MatchesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatchesComponent, HttpClientTestingModule, RouterTestingModule], // ✅ Standalone
+      imports: [MatchesComponent, HttpClientTestingModule, RouterTestingModule],
       providers: [MatchService],
     }).compileComponents();
 
@@ -26,12 +26,12 @@ describe('MatchesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fetch matches', () => {
+  it('should fetch matches on load', () => {
     const dummyMatches: Match[] = [
-      { matchId: 1, opponent: 'Team A', matchDate: new Date('2026-02-10'), location: 'Stadium 1', goalsFor: 2, goalsAgainst: 1 },
+      { matchId: 1, opponent: 'Team A', matchDate: new Date('2026-02-10'), location: 'Stadium', goalsFor: 2, goalsAgainst: 1 },
     ];
 
-    component.ngOnInit();
+    component.load();
 
     const req = httpMock.expectOne('http://localhost:5278/api/matches');
     expect(req.request.method).toBe('GET');

@@ -12,7 +12,7 @@ describe('PlayersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlayersComponent, HttpClientTestingModule, RouterTestingModule], // ✅ Standalone Component
+      imports: [PlayersComponent, HttpClientTestingModule, RouterTestingModule],
       providers: [PlayerService],
     }).compileComponents();
 
@@ -26,12 +26,12 @@ describe('PlayersComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fetch players', () => {
+  it('should fetch players on load', () => {
     const dummyPlayers: Player[] = [
       { id: 1, firstName: 'John', lastName: 'Doe', position: 'Forward', shirtNumber: 9, nationality: 'USA', isActive: true },
     ];
 
-    component.ngOnInit();
+    component.load();
 
     const req = httpMock.expectOne('http://localhost:5278/api/players');
     expect(req.request.method).toBe('GET');

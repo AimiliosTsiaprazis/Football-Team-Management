@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { PlayerService } from './player.service';
 import { Player } from '../models/player';
 
-describe('PlayersService', () => {
+describe('PlayerService', () => {
   let service: PlayerService;
   let httpMock: HttpTestingController;
 
@@ -18,7 +18,7 @@ describe('PlayersService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Ensure no open requests
+    httpMock.verify();
   });
 
   it('should be created', () => {
@@ -28,11 +28,10 @@ describe('PlayersService', () => {
   it('should fetch players', () => {
     const dummyPlayers: Player[] = [
       { id: 1, firstName: 'John', lastName: 'Doe', position: 'Forward', shirtNumber: 9, nationality: 'USA', isActive: true },
-      { id: 2, firstName: 'Jane', lastName: 'Smith', position: 'Midfielder', shirtNumber: 8, nationality: 'UK', isActive: true },
     ];
 
     service.getAll().subscribe(players => {
-      expect(players.length).toBe(2);
+      expect(players.length).toBe(1);
       expect(players).toEqual(dummyPlayers);
     });
 
