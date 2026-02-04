@@ -14,11 +14,11 @@ jobs:
       SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT: ${{ secrets.SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT }}
 
     steps:
-      # ---------------- Checkout ----------------
+      # ---------------- Checkout repository ----------------
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # ---------------- Backend ----------------
+      # ---------------- Setup .NET backend ----------------
       - name: Setup .NET 8 SDK
         uses: actions/setup-dotnet@v3
         with:
@@ -36,18 +36,15 @@ jobs:
         working-directory: ./backend/FootballTeamAPI
         run: dotnet test --no-build --verbosity normal
 
-      # ---------------- Frontend ----------------
+      # ---------------- Setup Angular frontend ----------------
       - name: Setup Node.js v22
         uses: actions/setup-node@v3
         with:
           node-version: 22
           cache: 'npm'
 
-      - name: Use npm cache folder
-        run: npm config set cache ${{ github.workspace }}/frontend/footballWebApp/.npm-cache
-
-      # Install dependencies in the correct folder
-      - name: Install Angular dependencies
+      # Install Angular dependencies in the correct folder
+      - name: Install frontend dependencies
         working-directory: ./frontend/footballWebApp
         run: npm ci
 
@@ -56,7 +53,7 @@ jobs:
         working-directory: ./frontend/footballWebApp
         run: npm run build
 
-      # Run Angular tests (Vitest / Karma)
-      - name: Run Angular tests
+      # Run Angular tests (Vitest / Karma) in headless mode
+      - name: Run frontend tests
         working-directory: ./frontend/footballWebApp
         run: npm test -- --watch=false --browsers=ChromeHeadless
