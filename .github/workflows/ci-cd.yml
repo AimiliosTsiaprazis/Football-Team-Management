@@ -14,7 +14,6 @@ jobs:
       SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT: ${{ secrets.SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT }}
 
     steps:
-      # ---------------- Checkout ----------------
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -24,7 +23,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Restore backend dependencies
+      - name: Restore backend
         working-directory: ./backend/FootballTeamAPI
         run: dotnet restore
 
@@ -32,7 +31,7 @@ jobs:
         working-directory: ./backend/FootballTeamAPI
         run: dotnet build --no-restore --configuration Release
 
-      - name: Run backend tests
+      - name: Test backend
         working-directory: ./backend/FootballTeamAPI
         run: dotnet test --no-build --verbosity normal
 
@@ -42,19 +41,14 @@ jobs:
         with:
           node-version: 22
 
-      # Install frontend dependencies in the correct folder (where package-lock.json actually is)
-      - name: Install Angular dependencies
+      - name: Install frontend dependencies
         working-directory: ./frontend/footballWebApp
-        run: |
-          echo "Installing npm packages in correct folder"
-          npm ci
+        run: npm ci
 
-      # Build Angular frontend
-      - name: Build Angular frontend
+      - name: Build frontend
         working-directory: ./frontend/footballWebApp
         run: npm run build
 
-      # Run Angular tests (Vitest/Karma)
-      - name: Run frontend tests
+      - name: Run frontend tests (Karma + ChromeHeadless)
         working-directory: ./frontend/footballWebApp
-        run: npm test -- --watch=false --browsers=ChromeHeadless
+        run: npm test
