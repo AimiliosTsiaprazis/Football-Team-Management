@@ -1,0 +1,91 @@
+<div class="match-container">
+  <h2>Matches</h2>
+
+  <!-- Form to add a new match -->
+  <form (ngSubmit)="add()" #matchForm="ngForm">
+    <div>
+      <label for="opponent">Opponent:</label>
+      <input
+        type="text"
+        id="opponent"
+        [(ngModel)]="match.opponent"
+        name="Opponent"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="matchDate">Match Date:</label>
+      <input
+        type="date"
+        id="matchDate"
+        [(ngModel)]="match.matchDate"
+        name="MatchDate"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="location">Location:</label>
+      <input
+        type="text"
+        id="location"
+        [(ngModel)]="match.location"
+        name="Location"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="goalsFor">Goals For:</label>
+      <input
+        type="number"
+        id="goalsFor"
+        [(ngModel)]="match.goalsFor"
+        name="GoalsFor"
+        min="0"
+      />
+    </div>
+
+    <div>
+      <label for="goalsAgainst">Goals Against:</label>
+      <input
+        type="number"
+        id="goalsAgainst"
+        [(ngModel)]="match.goalsAgainst"
+        name="GoalsAgainst"
+        min="0"
+      />
+    </div>
+
+    <button type="submit" [disabled]="!matchForm.form.valid">Add Match</button>
+  </form>
+
+  <hr />
+
+  <!-- Table of matches -->
+  <table>
+    <thead>
+      <tr>
+        <th>Opponent</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Goals For</th>
+        <th>Goals Against</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of matches">
+        <td>{{ m.opponent }}</td>
+        <td>{{ m.matchDate | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ m.location }}</td>
+        <td>{{ m.goalsFor }}</td>
+        <td>{{ m.goalsAgainst }}</td>
+        <td>
+          <button (click)="delete(m.matchId!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
