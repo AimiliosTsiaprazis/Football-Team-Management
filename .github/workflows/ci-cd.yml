@@ -2,11 +2,9 @@ name: CI/CD - Football Team Management
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build-and-test:
@@ -15,53 +13,48 @@ jobs:
       SUPABASE_CONNECTION_Football_Team_Management: ${{ secrets.SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT }}
 
     steps:
-      # Checkout source
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Setup .NET
-      - name: Setup .NET 8
+      # Setup .NET 8
+      - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
 
       # Restore & build backend
-      - name: Restore backend
+      - name: Restore Backend
         run: |
           cd backend/FootballTeamAPI
           dotnet restore
 
-      - name: Build backend
+      - name: Build Backend
         run: |
           cd backend/FootballTeamAPI
           dotnet build --configuration Release
 
-      - name: Test backend
+      - name: Test Backend
         run: |
           cd backend/FootballTeamAPI
           dotnet test --no-build --verbosity normal
 
-      # Setup Node.js for Angular in subfolder
+      # Setup Node.js for Angular
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # Install Angular deps
       - name: Install Angular dependencies
-        working-directory: docs/frontend/footballWebApp
+        working-directory: frontend
         run: npm install
 
-      # Build Angular app
       - name: Build Angular frontend
-        working-directory: docs/frontend/footballWebApp
+        working-directory: frontend
         run: npm run build
 
-      # Optional: Run frontend tests
       - name: Test Angular frontend
-        working-directory: docs/frontend/footballWebApp
+        working-directory: frontend
         run: npm run test -- --watch=false --browsers=ChromeHeadless
 
-      # Deployment placeholder
-      - name: Deployment Placeholder
+      - name: Deployment placeholder
         run: echo "Add deployment step here"
