@@ -18,15 +18,22 @@ Full-stack web application for managing football teams, players, matches, and tr
 
 ## Setup Instructions
 
+### Supabase Database
+
+-
+
 ### Backend
 
 ```bash
 cd backend/FootballTeamAPI
 dotnet restore
 dotnet run
+```
 
 ### Frontend
 
+```bash
 cd frontend/football-ui
 npm install
 ng serve
+```
