@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // PostgreSQL (Supabase)
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Supabase"))
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Supabase") ?? Environment.GetEnvironmentVariable("SUPABASE_CONNECTION_Football_Team_Management"))
 );
 
 // CORS for Angular
