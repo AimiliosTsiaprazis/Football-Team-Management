@@ -39,11 +39,11 @@ jobs:
           cd backend/FootballTeamAPI
           dotnet test --no-build --verbosity normal
 
-      # 4. Setup Node.js for Angular
+      # 4. Setup Node.js for Angular (v22 required by Angular 21)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '22'
 
       # 5. Install Angular dependencies
       - name: Install Angular dependencies
