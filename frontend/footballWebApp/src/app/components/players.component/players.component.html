@@ -1,0 +1,24 @@
+<h2>Football Players</h2>
+
+<form (ngSubmit)="add()">
+
+  <input [(ngModel)]="player.firstName" name="firstName" placeholder="First">
+
+  <input [(ngModel)]="player.lastName" name="lastName" placeholder="Last">
+
+  <input [(ngModel)]="player.position" name="position" placeholder="Position">
+
+  <input type="number" [(ngModel)]="player.shirtNumber" name="shirtNumber">
+
+  <input [(ngModel)]="player.nationality" name="nationality" placeholder="Nationality">
+
+  <button>Add</button>
+
+</form>
+
+<ul>
+  <li *ngFor="let p of players">
+    {{p.firstName}} {{p.lastName}} ({{p.nationality}})
+    <button (click)="delete(p.id!)">X</button>
+  </li>
+</ul>
