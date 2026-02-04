@@ -41,13 +41,6 @@ CREATE TABLE matches (
   goals_against INT
 );
 
--- Training Sessions
-CREATE TABLE training_sessions (
-  training_id BIGSERIAL PRIMARY KEY,
-  training_date DATE,
-  focus TEXT
-);
-
 ### Backend
 
 ```bash
