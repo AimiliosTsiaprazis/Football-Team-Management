@@ -25,9 +25,25 @@ namespace FootballTeamAPI.Controllers
         [HttpPost]
         public IActionResult AddMatch(Match match)
         {
+            if (match == null)
+            {
+                return BadRequest();
+            }
+            
             _db.Matches.Add(match);
             _db.SaveChanges();
             return Ok(match);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteMatch(int id)
+        {
+            var match = _db.Matches.Find(id);
+            if (match == null) return NotFound();
+
+            _db.Matches.Remove(match);
+            _db.SaveChanges();
+            return NoContent();
         }
     }   
 }

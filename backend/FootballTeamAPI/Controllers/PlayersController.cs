@@ -29,5 +29,16 @@ namespace FootballTeamAPI.Controllers
             _db.SaveChanges();
             return Ok(player);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletePlayer(int id)
+        {
+            var player = _db.Players.Find(id);
+            if (player == null) return NotFound();
+
+            _db.Players.Remove(player);
+            _db.SaveChanges();
+            return NoContent();
+        }
     }   
 }
