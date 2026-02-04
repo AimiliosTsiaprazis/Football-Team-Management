@@ -44,7 +44,8 @@ CREATE TABLE matches (
 ### Backend
 
 ```bash
-cd backend/FootballTeamAPI
+cd backend
+cd FootballTeamAPI
 dotnet restore
 dotnet run
 ```
@@ -52,7 +53,8 @@ dotnet run
 ### Frontend
 
 ```bash
-cd frontend/football-ui
+cd frontend
+cd footballWebApp
 npm install
 ng serve
 ```
