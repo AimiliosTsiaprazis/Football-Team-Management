@@ -18,7 +18,7 @@ describe('PlayersService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify();
+    httpMock.verify(); // Ensure no open requests
   });
 
   it('should be created', () => {
@@ -28,10 +28,11 @@ describe('PlayersService', () => {
   it('should fetch players', () => {
     const dummyPlayers: Player[] = [
       { id: 1, firstName: 'John', lastName: 'Doe', position: 'Forward', shirtNumber: 9, nationality: 'USA', isActive: true },
+      { id: 2, firstName: 'Jane', lastName: 'Smith', position: 'Midfielder', shirtNumber: 8, nationality: 'UK', isActive: true },
     ];
 
     service.getAll().subscribe(players => {
-      expect(players.length).toBe(1);
+      expect(players.length).toBe(2);
       expect(players).toEqual(dummyPlayers);
     });
 

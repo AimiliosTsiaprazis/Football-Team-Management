@@ -3,6 +3,7 @@ import { PlayersComponent } from './players.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { PlayerService } from '../../services/player.service';
 import { Player } from '../../models/player';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PlayersComponent', () => {
   let component: PlayersComponent;
@@ -11,7 +12,7 @@ describe('PlayersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlayersComponent, HttpClientTestingModule], // ✅ Standalone Component in imports
+      imports: [PlayersComponent, HttpClientTestingModule, RouterTestingModule], // ✅ Standalone Component
       providers: [PlayerService],
     }).compileComponents();
 

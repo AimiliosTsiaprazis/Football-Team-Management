@@ -3,6 +3,7 @@ import { MatchesComponent } from './matches.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { MatchService } from '../../services/match.service';
 import { Match } from '../../models/match';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('MatchesComponent', () => {
   let component: MatchesComponent;
@@ -11,7 +12,7 @@ describe('MatchesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatchesComponent, HttpClientTestingModule], // ✅ Standalone Component
+      imports: [MatchesComponent, HttpClientTestingModule, RouterTestingModule], // ✅ Standalone
       providers: [MatchService],
     }).compileComponents();
 
