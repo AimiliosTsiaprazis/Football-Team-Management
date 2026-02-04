@@ -21,6 +21,7 @@ Full-stack web application for managing football teams, players, matches, and tr
 ### Supabase Database Tables
 
 -- Players
+
 CREATE TABLE players (
   player_id BIGSERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
@@ -32,6 +33,7 @@ CREATE TABLE players (
 );
 
 -- Matches
+
 CREATE TABLE matches (
   match_id BIGSERIAL PRIMARY KEY,
   opponent TEXT,
