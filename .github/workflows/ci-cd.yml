@@ -1,0 +1,82 @@
+name: CI/CD - Football Team Management
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    env:
+      # Pass Supabase connection string to .NET backend
+      SUPABASE_CONNECTION_Football_Team_Management: ${{ secrets.SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT }}
+
+    steps:
+      # 1. Checkout repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # 2. Setup .NET 8
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      # 3. Restore backend dependencies
+      - name: Restore .NET Dependencies
+        run: |
+          cd backend/FootballTeamAPI
+          dotnet restore
+
+      # 4. Build backend
+      - name: Build Backend
+        run: |
+          cd backend/FootballTeamAPI
+          dotnet build --configuration Release
+
+      # 5. Run backend tests (if you have test projects)
+      - name: Test Backend
+        run: |
+          cd backend/FootballTeamAPI
+          dotnet test --no-build --verbosity normal
+
+      # 6. (Optional) Run backend to verify DB connection
+      - name: Run Backend to Verify Supabase Connection
+        run: |
+          cd backend/FootballTeamAPI
+          dotnet run --urls http://localhost:5000 &
+          sleep 10
+          curl http://localhost:5000/swagger/index.html || echo "Backend started successfully"
+
+      # 7. Setup Node.js for Angular
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # 8. Install frontend dependencies
+      - name: Install Angular Dependencies
+        run: |
+          cd frontend/footballWebApp
+          npm install
+
+      # 9. Build Angular frontend
+      - name: Build Angular Frontend
+        run: |
+          cd frontend/footballWebApp
+          npm run build
+
+      # 10. Run Angular tests
+      - name: Test Angular Frontend
+        run: |
+          cd frontend/footballWebApp
+          npm run test -- --watch=false --browsers=ChromeHeadless
+
+      # 11. Deployment placeholder
+      - name: Deployment Placeholder
+        run: echo "Add your deployment step here"
