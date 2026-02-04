@@ -5,27 +5,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FootballTeamAPI.Models
 {
-    [Table("matches")]
+    [Table("Matches")]
     public class Match
     {
 
         [Key]
-        [Column("match_id")]
+        [Column("MatchId")]
         public long MatchId { get; set; }
 
-        [Column("opponent")]
+        [Column("Opponent")]
         public string Opponent { get; set; }
     
-        [Column("match_date")]
+        [Column("MatchDate")]
         public DateTime MatchDate { get; set; }
 
-        [Column("location")]
+        [Column("Location")]
         public string Location { get; set; }
 
-        [Column("goals_for")]
+        [Column("GoalsFor")]
         public int GoalsFor { get; set; }
 
-        [Column("goals_against")]
+        [Column("GoalsAgainst")]
         public int GoalsAgainst { get; set; }
     }
 }

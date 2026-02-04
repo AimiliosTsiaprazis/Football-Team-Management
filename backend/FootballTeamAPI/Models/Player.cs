@@ -9,25 +9,25 @@ namespace FootballTeamAPI.Models
     public class Player
     {
         [Key]
-        [Column("player_id")]
+        [Column("Id")]
         public int Id { get; set;}
 
-        [Column("first_name")]
+        [Column("FirstName")]
         public string FirstName { get; set;}
 
-        [Column("last_name")]
+        [Column("LastName")]
         public string LastName { get; set;}
 
-        [Column("position")]
+        [Column("Position")]
         public string Position { get; set;}
 
-        [Column("nationality")]
+        [Column("Nationality")]
         public string Nationality { get; set;}
 
-        [Column("shirt_number")]
+        [Column("ShirtNumber")]
         public int ShirtNumber { get; set;}
 
-        [Column("is_active")]
+        [Column("IsActive")]
         public bool isActive { get; set;}
     }
 }
