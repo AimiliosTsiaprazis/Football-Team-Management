@@ -41,19 +41,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22
-          cache: 'npm'
 
-      # Install frontend dependencies
+      # Install frontend dependencies in the correct folder (where package-lock.json actually is)
       - name: Install Angular dependencies
         working-directory: ./frontend/footballWebApp
-        run: npm ci
+        run: |
+          echo "Installing npm packages in correct folder"
+          npm ci
 
       # Build Angular frontend
       - name: Build Angular frontend
         working-directory: ./frontend/footballWebApp
         run: npm run build
 
-      # Run frontend tests
-      - name: Run Angular tests
+      # Run Angular tests (Vitest/Karma)
+      - name: Run frontend tests
         working-directory: ./frontend/footballWebApp
         run: npm test -- --watch=false --browsers=ChromeHeadless
