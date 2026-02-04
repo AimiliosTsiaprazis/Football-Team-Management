@@ -43,7 +43,10 @@ jobs:
           node-version: 22
           cache: 'npm'
 
-      # Install npm dependencies inside footballWebApp
+      - name: Use npm cache folder
+        run: npm config set cache ${{ github.workspace }}/frontend/footballWebApp/.npm-cache
+
+      # Install dependencies in the correct folder
       - name: Install Angular dependencies
         working-directory: ./frontend/footballWebApp
         run: npm ci
