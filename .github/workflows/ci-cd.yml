@@ -39,7 +39,7 @@ jobs:
           cd backend/FootballTeamAPI
           dotnet test --no-build --verbosity normal
 
-      # 4. Setup Node.js for Angular (v22 required by Angular 21)
+      # 4. Setup Node.js for Angular
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -55,11 +55,11 @@ jobs:
         working-directory: frontend/footballWebApp
         run: npm run build
 
-      # 7. Test Angular frontend
+      # 7. Run Node-only tests (Vitest) ohne Browser
       - name: Test Angular frontend
         working-directory: frontend/footballWebApp
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
+        run: npm run test -- --watch=false
 
       # 8. Deployment placeholder
       - name: Deployment placeholder
-        run: echo "Add deployment step here"
+        run: echo "Hier kannst du später Deployment hinzufügen"
