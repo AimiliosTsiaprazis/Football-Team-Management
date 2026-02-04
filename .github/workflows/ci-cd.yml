@@ -2,64 +2,54 @@ name: CI/CD - Football Team Management
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
     env:
-      SUPABASE_CONNECTION_Football_Team_Management: ${{ secrets.SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT }}
+      SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT: ${{ secrets.SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT }}
 
     steps:
-      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Setup .NET 8
-      - name: Setup .NET
+      # ---------------- Backend ----------------
+      - name: Setup .NET 8 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: 8.0.x
 
-      # 3. Restore & build backend
-      - name: Restore Backend
-        run: |
-          cd backend/FootballTeamAPI
-          dotnet restore
+      - name: Restore .NET dependencies
+        working-directory: ./backend/FootballTeamAPI
+        run: dotnet restore
 
-      - name: Build Backend
-        run: |
-          cd backend/FootballTeamAPI
-          dotnet build --configuration Release
+      - name: Build .NET backend
+        working-directory: ./backend/FootballTeamAPI
+        run: dotnet build --no-restore --configuration Release
 
-      - name: Test Backend
-        run: |
-          cd backend/FootballTeamAPI
-          dotnet test --no-build --verbosity normal
+      - name: Run backend tests
+        working-directory: ./backend/FootballTeamAPI
+        run: dotnet test --no-build --verbosity normal
 
-      # 4. Setup Node.js for Angular
+      # ---------------- Frontend ----------------
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: 22
+          cache: 'npm'
 
-      # 5. Install Angular dependencies
       - name: Install Angular dependencies
-        working-directory: frontend/footballWebApp
+        working-directory: ./frontend/footballWebApp
         run: npm install
 
-      # 6. Build Angular frontend
-      - name: Build Angular frontend
-        working-directory: frontend/footballWebApp
+      - name: Run Angular lint
+        working-directory: ./frontend/footballWebApp
         run: npm run build
 
-      # 7. Run Node-only tests (Vitest) ohne Browser
-      - name: Test Angular frontend
-        working-directory: frontend/footballWebApp
-        run: npm run test -- --watch=false
-
-      # 8. Deployment placeholder
-      - name: Deployment placeholder
-        run: echo "Hier kannst du später Deployment hinzufügen"
+      - name: Run Angular tests
+        working-directory: ./frontend/footballWebApp
+        run: npm test -- --watch=false --browsers=ChromeHeadless
