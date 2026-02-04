@@ -13,16 +13,17 @@ jobs:
       SUPABASE_CONNECTION_Football_Team_Management: ${{ secrets.SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT }}
 
     steps:
+      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Setup .NET 8
+      # 2. Setup .NET 8
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
 
-      # Restore & build backend
+      # 3. Restore & build backend
       - name: Restore Backend
         run: |
           cd backend/FootballTeamAPI
@@ -38,23 +39,27 @@ jobs:
           cd backend/FootballTeamAPI
           dotnet test --no-build --verbosity normal
 
-      # Setup Node.js for Angular
+      # 4. Setup Node.js for Angular
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
+      # 5. Install Angular dependencies
       - name: Install Angular dependencies
-        working-directory: frontend
+        working-directory: frontend/footballWebApp
         run: npm install
 
+      # 6. Build Angular frontend
       - name: Build Angular frontend
-        working-directory: frontend
+        working-directory: frontend/footballWebApp
         run: npm run build
 
+      # 7. Test Angular frontend
       - name: Test Angular frontend
-        working-directory: frontend
+        working-directory: frontend/footballWebApp
         run: npm run test -- --watch=false --browsers=ChromeHeadless
 
+      # 8. Deployment placeholder
       - name: Deployment placeholder
         run: echo "Add deployment step here"
