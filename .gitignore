@@ -1,7 +1,6 @@
 # Backend
 bin/
 obj/
-appsettings.json
 
 # Frontend
 node_modules/
