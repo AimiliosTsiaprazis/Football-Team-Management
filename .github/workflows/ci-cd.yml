@@ -1,4 +1,4 @@
-name: CI/CD - Football Team Management
+name: CI - Football Team Management
 
 on:
   push:
@@ -14,10 +14,11 @@ jobs:
       SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT: ${{ secrets.SUPABASE_CONNECTION_FOOTBALL_TEAM_MANAGEMENT }}
 
     steps:
+      # ---------------- Checkout ----------------
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # ---------------- Backend ----------------
+      # ---------------- Backend (.NET) ----------------
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v3
         with:
@@ -29,14 +30,14 @@ jobs:
 
       - name: Build backend
         working-directory: ./backend/FootballTeamAPI
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build --configuration Release --no-restore
 
       - name: Test backend
         working-directory: ./backend/FootballTeamAPI
         run: dotnet test --no-build --verbosity normal
 
-      # ---------------- Frontend ----------------
-      - name: Setup Node.js v22
+      # ---------------- Frontend (Angular) ----------------
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22
@@ -49,6 +50,6 @@ jobs:
         working-directory: ./frontend/footballWebApp
         run: npm run build
 
-      - name: Run frontend tests (Karma + ChromeHeadless)
+      - name: Run frontend tests (ChromeHeadless)
         working-directory: ./frontend/footballWebApp
         run: npm test
