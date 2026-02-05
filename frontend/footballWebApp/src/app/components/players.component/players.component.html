@@ -1,3 +1,5 @@
+<div class="container">
+  <div class="card">
 <h2>Football Players</h2>
 
 <form (ngSubmit)="add()">
@@ -15,10 +17,19 @@
   <button>Add</button>
 
 </form>
-
+<br>
+<hr>
 <ul>
+  <h2>List of Saved Players</h2>
   <li *ngFor="let p of players">
     {{p.firstName}} {{p.lastName}} ({{p.nationality}})
     <button (click)="delete(p.id!)">X</button>
   </li>
 </ul>
+</div>
+</div>
+<br>
+<br>
+<br>
+<hr>
+<h5>Aimilios Tsiaprazis - Software Developer @2026</h5>
