@@ -1,6 +1,6 @@
 # ⚽ Football Team Management System
 
-Full-stack web application for managing football teams, players, matches, and training sessions.
+Full-stack web application for managing football teams, players and matches.
 
 ## Tech Stack
 - Frontend: Angular
