@@ -43,6 +43,9 @@ CREATE TABLE matches (
   goals_against INT
 );
 
+Add Supabase ConnectionString at the appsettings.json file for the backend like this:
+"Host=YOUR-HOST;Database=YOUR-DATABASE;Username=YOUR_USERNAME;Password=YOUR-PASSWORD;SSL Mode=Require;Trust Server Certificate=true"
+
 ### Backend
 
 ```bash
