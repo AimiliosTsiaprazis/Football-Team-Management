@@ -17,7 +17,7 @@ export class MatchesComponent implements OnInit{
 
   match: Match = {
     opponent: '',
-    matchDate: new Date(),
+    matchDate: '',
     location: '',
     goalsFor: 0,
     goalsAgainst: 0
@@ -34,9 +34,9 @@ export class MatchesComponent implements OnInit{
   }
 
   add(){
-    const matchToSend = {
+    const matchToSend: Match = {
       ...this.match,
-    MatchDate: new Date(this.match.matchDate).toISOString()
+    matchDate: new Date(this.match.matchDate).toISOString()
     };
 
     this.matchService.create(matchToSend).subscribe(() => {
@@ -48,7 +48,7 @@ export class MatchesComponent implements OnInit{
   reset(){
       this.match = {
       opponent: '',
-      matchDate: new Date(),
+      matchDate: '',
       location: '',
       goalsFor: 0,
       goalsAgainst: 0

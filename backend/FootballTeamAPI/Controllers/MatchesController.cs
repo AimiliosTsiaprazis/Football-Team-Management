@@ -36,7 +36,7 @@ namespace FootballTeamAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteMatch(int id)
+        public IActionResult DeleteMatch(long id)
         {
             var match = _db.Matches.Find(id);
             if (match == null) return NotFound();
