@@ -10,11 +10,9 @@ Full-stack web application for managing football team with players and matches.
 - Version Control: GitHub
 
 ## Features
+- 1 Team Management
 - Player Management (CRUD)
-- Match Management
-- Training Sessions
-- Attendance Tracking
-- Role-based Authentication (Planned)
+- Match Management (CRUD)
 
 ## Setup Instructions
 
@@ -43,7 +41,7 @@ CREATE TABLE matches (
   goals_against INT
 );
 
-Add Supabase ConnectionString at the appsettings.json file for the backend like this:
+Add your Supabase ConnectionString at the appsettings.json file for the backend like this:
 "Host=YOUR-HOST;Database=YOUR-DATABASE;Username=YOUR_USERNAME;Password=YOUR-PASSWORD;SSL Mode=Require;Trust Server Certificate=true"
 
 ### Backend
@@ -63,3 +61,7 @@ cd footballWebApp
 npm install
 ng serve
 ```
+
+### INFO
+
+Both Backend and Frontend should run so no errors appear
