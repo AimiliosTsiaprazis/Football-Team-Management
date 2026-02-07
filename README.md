@@ -65,3 +65,20 @@ ng serve
 ### INFO
 
 Both Backend and Frontend should run so no errors appear
+
+### Screenshots
+
+
+<img width="1387" height="552" alt="SupabaseSchema" src="https://github.com/user-attachments/assets/bebe0200-9564-40eb-bdd8-f5e32b7d4395" />
+
+
+<img width="2547" height="1280" alt="Backend" src="https://github.com/user-attachments/assets/1e8ec654-55fa-4d88-9577-78ec0443915f" />
+
+
+<img width="1342" height="1267" alt="Homepage" src="https://github.com/user-attachments/assets/14af83fc-a349-4d96-a016-0705d39eca85" />
+
+
+<img width="1031" height="897" alt="Players" src="https://github.com/user-attachments/assets/fdfc2f35-b004-4f4f-9240-9064e9714835" />
+
+
+<img width="1243" height="1066" alt="Matches" src="https://github.com/user-attachments/assets/54b164e7-0835-4c52-8953-aa7fd04e310e" />
