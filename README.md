@@ -1,6 +1,6 @@
 # ⚽ Football Team Management System
 
-Full-stack web application for managing football teams, players, matches, and training sessions.
+Full-stack web application for managing football teams, players and matches.
 
 ## Tech Stack
 - Frontend: Angular
@@ -42,6 +42,9 @@ CREATE TABLE matches (
   goals_for INT,
   goals_against INT
 );
+
+Add Supabase ConnectionString at the appsettings.json file for the backend like this:
+"Host=YOUR-HOST;Database=YOUR-DATABASE;Username=YOUR_USERNAME;Password=YOUR-PASSWORD;SSL Mode=Require;Trust Server Certificate=true"
 
 ### Backend
 
