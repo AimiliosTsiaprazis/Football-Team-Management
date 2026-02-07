@@ -69,7 +69,7 @@ Both Backend and Frontend should run so no errors appear
 ### Screenshots
 
 
-<img width="1387" height="552" alt="SupabaseSchema" src="https://github.com/user-attachments/assets/bebe0200-9564-40eb-bdd8-f5e32b7d4395" />
+<img width="1153" height="603" alt="SupabaseSchema" src="https://github.com/user-attachments/assets/f899bca9-edd4-4ea5-af1a-809d3540bbd1" />
 
 
 <img width="2547" height="1280" alt="Backend" src="https://github.com/user-attachments/assets/1e8ec654-55fa-4d88-9577-78ec0443915f" />
