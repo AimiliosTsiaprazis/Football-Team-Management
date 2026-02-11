@@ -68,10 +68,15 @@ Both Backend and Frontend should run so no errors appear
 
 ### Project Versions
 
+Backend
+-dotnet version: 10.0.102
+-Target Framework: net8.0
+
+Frontend
 -Angular Framework: 21.0.0
 -Angular CLI: 21.0.4
 -npm: 11.7.0
--node.js: 
+-node.js: 24.12.0
 
 ### Screenshots
 
