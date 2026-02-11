@@ -66,6 +66,13 @@ ng serve
 
 Both Backend and Frontend should run so no errors appear
 
+### Project Versions
+
+-Angular Framework: 21.0.0
+-Angular CLI: 21.0.4
+-npm: 11.7.0
+-node.js: 
+
 ### Screenshots
 
 
