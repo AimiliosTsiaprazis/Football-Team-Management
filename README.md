@@ -96,3 +96,9 @@ Frontend
 
 
 <img width="1243" height="1066" alt="Matches" src="https://github.com/user-attachments/assets/54b164e7-0835-4c52-8953-aa7fd04e310e" />
+
+
+<img width="2557" height="1377" alt="Postman_Players" src="https://github.com/user-attachments/assets/feca6bf5-720a-430d-a3e6-db26eb4662f1" />
+
+
+<img width="2542" height="1378" alt="Postman_Matches" src="https://github.com/user-attachments/assets/18e51ca4-8b4d-4210-84b6-be2186d71d62" />
